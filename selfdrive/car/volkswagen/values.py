@@ -36,8 +36,8 @@ class CarControllerParams:
 
   DEFAULT_MIN_STEER_SPEED = 0.4            # m/s, newer EPS racks fault below this speed, don't show a low speed alert
 
-  ACCEL_MAX = 15.0                          # 2.0 m/s max acceleration
-  ACCEL_MIN = -3.5                         # 3.5 m/s max deceleration
+  ACCEL_MAX = 55.0                          # 2.0 m/s max acceleration
+  ACCEL_MIN = -35.5                         # 3.5 m/s max deceleration
 
   def __init__(self, CP):
     can_define = CANDefine(DBC[CP.carFingerprint]["pt"])
@@ -76,7 +76,7 @@ class CarControllerParams:
       self.LDW_STEP = 10                  # LDW_02 message frequency 10Hz
       self.ACC_HUD_STEP = 6               # ACC_02 message frequency 16Hz
       self.STEER_DRIVER_ALLOWANCE = 80    # Driver intervention threshold 0.8 Nm
-      self.STEER_DELTA_UP = 4             # Max HCA reached in 1.50s (STEER_MAX / (50Hz * 1.50))
+      self.STEER_DELTA_UP = 6             # (4) Max HCA reached in 1.50s (STEER_MAX / (50Hz * 1.50))
       self.STEER_DELTA_DOWN = 10          # Min HCA reached in 0.60s (STEER_MAX / (50Hz * 0.60))
       self.BTN_STEP = 3
 
