@@ -32,12 +32,12 @@ class CarControllerParams:
 
   STEER_TIME_MAX = 1720                     # Max time that EPS allows uninterrupted HCA steering control
   STEER_TIME_ALERT = STEER_TIME_MAX - 10   # If mitigation fails, time to soft disengage before EPS timer expires
-  STEER_TIME_STUCK_TORQUE = 1.9            # EPS limits same torque to 6 seconds, reset timer 3x within that period
+  STEER_TIME_STUCK_TORQUE = 1              # (31.07.24: 1.9 --> 1) EPS limits same torque to 6 seconds, reset timer 3x within that period
 
   DEFAULT_MIN_STEER_SPEED = 0.4            # m/s, newer EPS racks fault below this speed, don't show a low speed alert
 
-  ACCEL_MAX = 55.0                          # 2.0 m/s max acceleration
-  ACCEL_MIN = -35.5                         # 3.5 m/s max deceleration
+  ACCEL_MAX = 25.0                          # 2.0 m/s max acceleration
+  ACCEL_MIN = -5.5                         # 3.5 m/s max deceleration
 
   def __init__(self, CP):
     can_define = CANDefine(DBC[CP.carFingerprint]["pt"])
@@ -76,7 +76,7 @@ class CarControllerParams:
       self.LDW_STEP = 10                  # LDW_02 message frequency 10Hz
       self.ACC_HUD_STEP = 6               # ACC_02 message frequency 16Hz
       self.STEER_DRIVER_ALLOWANCE = 80    # Driver intervention threshold 0.8 Nm
-      self.STEER_DELTA_UP = 6             # (4) Max HCA reached in 1.50s (STEER_MAX / (50Hz * 1.50))
+      self.STEER_DELTA_UP = 4             # Max HCA reached in 1.50s (STEER_MAX / (50Hz * 1.50))
       self.STEER_DELTA_DOWN = 10          # Min HCA reached in 0.60s (STEER_MAX / (50Hz * 0.60))
       self.BTN_STEP = 3
 
